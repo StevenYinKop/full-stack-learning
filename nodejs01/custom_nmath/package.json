@@ -1,0 +1,11 @@
+{
+  "name": "custom_nmath",
+  "version": "0.0.1",
+  "description": "This is my first custom_package",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,41 @@
+
+ES6模块化
+
+import(use, require) : 引入
+export(exports) : 到处
+
+ES6和nodejs的输入输出方式: 
+ES6:
+  输出:
+    export {a, b, c}
+  输入:
+    import mod from './demo.js'
+node:
+  输出:
+    exports.xx=xxx;
+    module.exports={a, b, c};
+  输入:
+    let mod = require('./demo.js')
+
+
+
+ES6的代码在低版本的浏览器中没有办法直接使用
+可以通过babel进行编译,然后可以在低版本浏览器使用了
+
+babel: 
+    1. 安装babel-cli; -> cli -> command line interface
+        cnpm i -g babel-cli
+    (<推荐>2. cnpm init 创建一个json的工程目录
+    3. 可以在package.json的script中添加自己需要的命令
+    如: node demo.js --slience --noerror --report: C://a.txt;
+    将上述命令添加至scripts中: 
+    "demo_script" : "node demo.js --slience --noerror --report: C://a.txt;"
+    下次启动时就可以直接输入node demo.js demo_script)
+    4. babel官方要求在package.json的script中添加一个命令:
+        "build":"babel src -d lib"
+    5. 创建一个.babelrc 文件
+        添加: 
+        {
+            "presets":["env"]
+        }
+WebPack
