@@ -1,0 +1,43 @@
+﻿构建工具
+
+	gulp
+	babel
+	webpack
+	npm
+
+express
+mockjs
+
+ES6项目架构
+	1. 基础架构
+		1) 业务逻辑: 页面, 交互
+		2) 自动构建: 编译, 辅助(自动刷新, 文件合并, 资源压缩)
+		3) 服务接口: 数据, 接口
+	2. 任务自动化(gulp)
+		1) gulp: 开发过程自动化,
+		2) 中文文档: https://www.gulpjs.com.cn/
+	3. 编译工具(babel, webpack)
+		1) babel: JavaScript的编译器: ES6本身是不能再浏览器直接运行的, 
+	babel就是将ES6转换成ES5或ES3让浏览器识别, 然后运行
+		2) webpack: 解决模块依赖的问题
+	4. 代码实现
+
+1. 基础架构: 
+	建包:
+		|-app : 前段代码
+		||-css
+		||-js
+		|||-index.js
+		|||-class
+		||||-test.js
+		|-views: 放置末班
+		||-error.ejs expressjs (这两个.ejs当做html使用)
+		||-index.ejs expressjs
+		|-server : 服务器目录
+		|-tasks : 用于放置构建工具
+	
+	a. 使用"express -e ."在/server文件夹下进行初始化构建的操作
+构建完成后要进行"npm i"操作安装依赖包
+	b. 在根目录下使用"npm init"初始化package.json文件,用于管理项目
+	c. 在根目录下创建.babelrc文件, babel编译时会自动去寻找这个文件
+	d. 在根目录下创建.gulpfile.babel.js, 使用ES6写构建脚本, 如果不加.babel, gulp会报错
