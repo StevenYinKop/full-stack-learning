@@ -1,4 +1,4 @@
-﻿构建工具
+构建工具
 
 	gulp
 	babel
@@ -41,3 +41,8 @@ ES6项目架构
 	b. 在根目录下使用"npm init"初始化package.json文件,用于管理项目
 	c. 在根目录下创建.babelrc文件, babel编译时会自动去寻找这个文件
 	d. 在根目录下创建.gulpfile.babel.js, 使用ES6写构建脚本, 如果不加.babel, gulp会报错
+
+
+项目实战: 彩票项目(快频彩种 11选5)
+	相关业务功能点: 倒计时, 玩法切换, 计算金额, 添加号码, 投注支付, 随机号码, 奖金预测, 状态更新, 动态遗漏
+	所需要用的ES6知识点: let和const, 解构赋值, 正则扩展, 数值扩展, 数组扩展, 函数扩展, 对象扩展, 字符串扩展, Symbol, 数据结构, Proxy, Reflect, 类, Promise, Generator, 模块化

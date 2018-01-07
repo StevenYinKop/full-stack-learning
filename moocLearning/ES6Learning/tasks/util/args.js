@@ -30,3 +30,5 @@ const args = yargs
     })
     
     .argv // 命令行输入的内容以字符串作为解析
+
+    export default args;
