@@ -1,0 +1,23 @@
+模块化: 
+1. sea, require  --民间
+    CMD AMD
+    模块.js  define  require/exports/module
+    前台.html: use
+2. node.js:
+    node_modules: 目录: 存放模块代码
+    require/exports/module
+3. ES6 --官方
+    export/import
+---------------------------------------------------------
+babel-ES6
+webpack-一站式
+---------------------------------------------------------
+数据交互
+1. http协议
+2. form
+3. ajax-官方, 不能跨域 单向
+4. jsonp-民间, 可以跨域
+5. websocket-双工->双向
+---------------------------------------------------------
+http协议: 
+1. 无状态的(金鱼)->第一次请求和第一百次请求效果一样,不会记住你是谁
