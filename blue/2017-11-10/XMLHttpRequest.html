@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.onload= function() {
+            var oBtn = document.getElementById("btn1")
+            oBtn.onclick=function() {
+                //1. 创建对象
+                var xhr = new XMLHttpRequest()
+                //2. 连接请求
+                // arg0: 采用哪种方式
+                // arg1: 请求的文件
+                // arg2: true: 异步, false: 同步
+                xhr.open('GET', 'data/ajax.txt', true)
+                //3. 发送
+                // send的参数时需要发送的body数据, 但是是GET请求方式,所以不需要body
+                xhr.send()
+                //4. 接收
+                xhr.onreadystatechange=function(){
+                    // 会调用很多次
+                    // on ready state change
+                    // xhr是一个状态机, 其中有状态转移的过程
+                    // alert(xhr.readyState)// 可以看到readyState = 2,3,4状态
+                    //其中有5中状态, 
+                    /**
+                     * 0: 初始状态: new出对象, xhr对象刚刚创建
+                     * 1: 连接状态: open完 连接到服务器
+                     * 2: 发送请求: send完 
+                     * 3: 接收完成: 响应头header接收完成
+                     * 4: 接收完成: 响应体body接收完成
+                     * 当状态=4时, 可以看做是请求完成
+                     */
+                    if (xhr.readyState == 4) {
+                        if(xhr.status >=200 && xhr.status <= 300 || xhr.status == 304){
+
+                        }
+                        /**
+                         * satus--http状态码: 
+                         * 分成5段: 
+                         *  1XX: 代表消息(不常见)
+                         *  2XX: 代表成功
+                         *  3XX: 都是重定向
+                         *      301: moved Permanently  永久重定向, 下次请求不会再访问该url
+                         *      302: move temporarity   临时重定向, 下次请求还会走这里
+                         *      304: 
+                         *  成功: 2XX, 304
+                         *  4XX: 客户端请求错误
+                         *      403: 被禁止了
+                         *  5XX: 服务器错误
+                         *      500: Internal Server Error 
+                         *      503: 服务器在维护或者服务器过载
+                         *  除了以上状态码, 可以自定义状态码, 可以用6XX,7XX...但是不要覆盖原有有含义的状态码
+                         * 
+                         * 为什么要重定向: 例: 访问taobao.com
+                         * 
+                         * 如果是PC端, 302-> www.taobao.com
+                         * 手机端: 302-> m.taobao.com
+                         */
+                        // xhr.response : 一般用不到
+                        // xhr.responseText : 以文本方式返回数据
+                        // xhr.responseURL: 一般用不到
+                        // xhr.responseXML : 以XML方式返回数据
+
+                        // eval: 不安全, 可能会执行一些非预期的代码
+                        // JSON: JSON.stringify: 将json字符串化, {a: 12, b: 5} ->"{"a": 12, "b": 5"}"
+                        //       JSON.parse: 将字符串转换成json
+                        // 安全性: 
+                        // 前台没有安全性可言, 所有的安全性都是由后台实现的(注入)
+                        // XXS--跨站脚本攻击,其他人将一些别人写的JS代码放到我们的界面上执行
+                        //      DNS污染
+                        //      ajax不允许跨域的--为了防止XSS, 
+                        // 沙箱机制: 隔离出来的虚拟操作系统, 把程序丢进一个虚拟的系统上运行, (蜜罐系统)
+                        // C的数组: 是一个空间 没有结尾没有长度, 没有限制, 没有响应的操作, 是定长的
+                        // JS的数组: 不仅是一个空间,也是一个对象, 有一堆相关的操作, 是变长的, 可以延展
+
+                        // 链表: 变长的, 可以随意扩展--O(1), 不擅长索引--O(n)
+                        // 数组: 变长的, 擅长扩展--O(1), 不擅长扩展--O(n)
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="按钮" id="btn1">
+</body>
+</html>
