@@ -1,4 +1,4 @@
-node.js
+ï»¿node.js
 
-ËäÈ»ºó×ºÊÇjs,µ«ÊÇÊµ¼ÊÉÏÊÇÒ»¸ö²ÉÓÃchromeV8ÒýÇæ,ÓÉC++ÓïÑÔ±àÐ´µÄ,±¾ÖÊÉÏÊÇÒ»¸öJavaScriptµÄÔËÐÐ»·¾³;
-nodejs¿ÉÒÔ½âÎöJS´úÂë,Ã»ÓÐä¯ÀÀÆ÷°²È«¼¶±ðµÄÏÞÖÆ, Ìá¹©ÏµÍ³¼¶±ðµÄAPI(Èç: ÎÄ¼þµÄ¶ÁÐ´, ½ø³ÌµÄ¹ÜÀí, ÍøÂçÍ¨ÐÅµÈ)
+è™½ç„¶åŽç¼€æ˜¯js,ä½†æ˜¯å®žé™…ä¸Šæ˜¯ä¸€ä¸ªé‡‡ç”¨chromeV8å¼•æ“Ž,ç”±C++è¯­è¨€ç¼–å†™çš„,æœ¬è´¨ä¸Šæ˜¯ä¸€ä¸ªJavaScriptçš„è¿è¡ŒçŽ¯å¢ƒ;
+nodejså¯ä»¥è§£æžJSä»£ç ,æ²¡æœ‰æµè§ˆå™¨å®‰å…¨çº§åˆ«çš„é™åˆ¶, æä¾›ç³»ç»Ÿçº§åˆ«çš„API(å¦‚: æ–‡ä»¶çš„è¯»å†™, è¿›ç¨‹çš„ç®¡ç†, ç½‘ç»œé€šä¿¡ç­‰)
