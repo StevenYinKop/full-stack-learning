@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.onload = function (){
+            var t = 5
+            setInterval(function (){
+                t--;
+                document.getElementById('sec').innerHTML = t
+                if (t==0){
+                    window.location='http://www.baidu.com'
+                }
+            },1000)
+        }
+    </script>
+</head>
+<body>
+    <h1>NOT FOUND</h1>
+    <h2>will return to homepage in <span id="sec">5</span>sec...</h2>
+</body>
+</html>

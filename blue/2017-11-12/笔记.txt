@@ -1,0 +1,66 @@
+组件: 
+    1. 能够重用的部分都可以作为组件
+    2. js原生组件的写法
+    3. 组件化开发写法: 
+        a.seajs, requirejs 
+        b.nodejs 
+        c.ES6
+---------------------------------------------------------
+seajs, requirejs
+    在js文件里(模块里):
+    define(function(require, exports, module){
+        require('2.js') <- 难点
+    })
+    在html文件里:
+    seajs.use('lib/1.js', function(mod){})
+库原理: 核心原理代码量并不多, 但是为了让这些代码有效运转可能要写几K的辅助代码
+---------------------------------------------------------
+Generator: 语法糖
+
+function *show(){
+    let a = 12;
+    let data1 = yield $.ajax('data/1.txt');
+    let b = 5;
+    let data2 = yield $.ajax('data/2.txt');
+    return a+b;
+}
+↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+
+function show (){
+    let a = 12;
+    $.ajax('data/1.txt').then(res=>{
+        let data1 = res;
+        let b = 5;
+        $.ajax('data/2.txt').then(res=>{
+            let data2 = res;
+            return a+b
+        });
+    });
+}
+
+Promise 本质: 回调函数 => 状态机
+当状态改变时, 需要调用之前挂起的then队列
+then的时候直接执行对应函数, 并且传参
+---------------------------------------------------------
+RESTful: 是一种习惯:
+    1. 统一
+    2. method + url 区分接口
+---------------------------------------------------------
+WebSocket: 
+    1. 双工通信
+    2. HTML5 (IE7,8, Chrome低版本都是没有的)
+    3. 用的非常广
+    4. 可跨域
+    5. socket.io 是一个库,帮助我们做WebSocket的兼容
+    cnpm install socket.io
+    socket.io -- node, 前台
+    浏览器 <--> 服务器 都要走http协议
+    所以WebSocket是基于Http协议的
+socket.io :
+    1. 兼容的,
+    2. 可跨域
+    聊天室, 视频点播
+
+Ajax. jsonp 跨域
+工具: 打包, 压缩等
+
