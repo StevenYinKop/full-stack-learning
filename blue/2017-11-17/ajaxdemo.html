@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        window.onload = function () {
+            var oBtn = document.getElementById('btn1');
+            oBtn.onclick = function () {
+                var xhr = new XMLHttpRequest()
+                xhr.open('post', 'http://localhost:8080/', true);
+                xhr.send();
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
+                        alert(xhr.status);
+                        // if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+                        //     alert(xhr.responseText);
+                        // } else {
+                        //     alert('error');
+                        // }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <input type="button" value="ajax请求" id="btn1" />
+</body>
+
+</html>

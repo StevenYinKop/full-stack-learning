@@ -1,0 +1,69 @@
+wamp => apache-Server(Web) + mysql-Server(db)
+
+mysql-Server
+node-httpServer
+Web服务: apache, node
+数据库: wamp里面的Mysql, 单装Mysql
+
+http2.0: 
+    1. 强制使用https
+    2. 性能更高- 面向流, 头压缩, 多路复用
+    3. 自带WebSocket, 双向通信, 服务器推送
+
+ajax2.0   IE10+
+    1. FormData
+        FormData 容器
+        set/get/append
+        formData.set('a', 5)
+        formData.set('a', 12)
+        => 'a': 12
+        formData.append('a', 5)
+        formData.append('a', 12)
+        => 'a' : [5, 12]
+    2. 文件上传(依赖于FormData), 上传进度监控
+        formData.set(key, <input type="file">)
+        xhr.upload.onload 上传完成
+        xhr.upload.onprogress 进度变化
+
+    3. 跨域(ajax1也可以跨域但是很不实用) -> CORS
+        出于安全性考虑, ajax不能跨域访问
+        官方禁止跨域初衷是担心自己访问别人服务器时接收到不安全数据
+        浏览器 + 服务器
+        resp.setHeader('Access-Control-Allow-Origin', '*')
+
+Ajax长连接* : 没什么用了, 服务器没拿到数据之前不会resp.end(), 要么超时要么拿到数据
+
+
+get方式有缓存: get方式为了获取方便
+post方式无缓存: post方式是为了向服务器发送数据, 如果有缓存, 在不清除的情况下每次发送的数据都会是第一次的数据
+
+ajax1.0: xhr.send(只能发送字符串)
+ajax2.0: xhr.send(formData)
+         xhr.send(Blob)
+         xhr.send(Buffer)
+
+jsonp 跨域 (WebSocket和ajax都支持跨域了, 也没什么用了) -> 搜索框的联想功能
+jsonp不是官方方法, 没有ajax严谨, 利用回调方法解决问题
+
+WebSocket原生, socket.io原理
+    let ws = new WebSocket()
+    let sock = ws.connect('ws://localhost:8080')
+    sock.on('message', function(){})
+
+HTML5 新特性:
+    1. geolocation          定位: 获得经纬度和海拔(实用)
+    2. video, audio         播放视频, 音频(实用)
+                            WebSocket推送 + video
+                            canvas + video
+    3. canvas               绘图(实用)
+    4. WebSocket            做双工通信(实用)
+    5. localStorage         本地存储(5M),用于代替cookie(cookie最大只能到4K)(实用)
+        sessionStorage      (不实用)
+    6. WebSQL               前端数据库(运用非常少, 不安全)
+    7. WebWorker            可以将JavaScript变成多线程(不实用,没有应用场所)
+        JavaScript---单线程(一次只能做一件事)
+    8. 文件操作              拖拽, 读取(实用)
+    9. manifest离线应用      希望网页在没网的时候也能打开(在有网的使用缓存下网页上的一些数据, 需要缓存的数据就写在manifest里面.)
+                            (不实用, 说到底也只是一个网页, 最多能缓存几M的数据,而且有许多数据不能离线获取到,
+                            被App取代了)
+svg/vml: 不属于HTML5的范围
