@@ -7,7 +7,7 @@ var server = http.createServer(function(req,res){
 		return;
 	}
 	//存储所有的文件夹
-	var wenjianjia = [];
+	var folder = [];
 	//stat检测状态
 	fs.readdir("./album",function(err,files){
         // console.log(err)
@@ -19,9 +19,9 @@ var server = http.createServer(function(req,res){
 			fs.stat("./album/" + thefilename , function(err,stats){
 				//如果他是一个文件夹，那么输出它：
 				if(stats.isDirectory()){
-					wenjianjia.push(thefilename);
+					folder.push(thefilename);
 				}
-				console.log(wenjianjia);
+				console.log(folder);
 			});
 		}
     });
