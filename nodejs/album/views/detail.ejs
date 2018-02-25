@@ -52,14 +52,24 @@
         <!-- /.container-fluid -->
     </nav>
     <div class="container">
+        <ol class="breadcrumb">
+            <li>
+                <a href="/">相册</a>
+            </li>
+            <li>
+                <a class="active">
+                    <%= albumName%>
+                </a>
+            </li>
+        </ol>
         <div class="row">
-            <% for(var i = 0; i<albums.length;i++){%>
+            <% for(var i = 0; i<images.length;i++){%>
                 <div class="col-xs-6 col-md-3">
-                    <a href="./<%= albums[i]%>" class="thumbnail">
-                        <img src="/images/Folder.png" alt="...">
+                    <a href="./<%= images[i]%>" class="thumbnail">
+                        <img src="/<%= albumName%>/<%= images[i] %>" alt="images[i]">
                     </a>
                     <div style="text-align: center">
-                        <%= albums[i] %>
+                        <%= images[i] %>
                     </div>
                 </div>
                 <%} %>
