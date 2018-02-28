@@ -1,0 +1,51 @@
+01： 这是个有意思的案例，每次访问127.0.0.1/都会往数据库写入一个哈哈
+02:  列出所有数据库中的数据
+
+
+mongoDb常用命令整理: 
+
+1. 开机: 
+    mongod --dbpath E:/xxx/xxx/xx
+指定路径
+
+2. 开机后进入mongoDB: 
+    mongo
+
+3. 创建和选择数据库: 
+    use Db
+
+4. 清屏: 
+    cls
+
+5. 查看所有DB: 
+    show dbs
+
+6. 查看选中数据库中的所有集合:
+    show collections
+
+7. 数据库中插入数据:
+    db.collections.insert({"key" : "value","key" : "value","key" : "value","key" : "value"})
+
+8. 删除数据库,没有缓冲确认提示, 慎用!
+    db.dropDataBases()
+
+
+8. 导入外部数据文件
+    mongoimport --db test --collection xxx --drop --file yyy.json
+    --db test : 导入到test数据库中
+    --collection xxx: 导入到xxx集合中
+    --drop : 清除之前所有数据
+    --file : 来自哪个文件
+
+9. find查找数据, ()内不放参数的话默认查找该collection中的所有数据
+    db.collection.find()
+    实例数据: {"name": "zhangsan", "age": 23, "email": ["zhangsan@qq.com", "zhangsan@163.com"], "score": {"java": 100, "c++": 60, "nodejs": 99}}
+    db.collection.find({"name":"zhangsan"})
+    db.collection.find({"name":"zhangsan","age":23})
+    如果数据中还是Json的话, 用.语法继续往下走,如:
+    db.collection.find({"score.java": 100})
+
+
+
+
+
