@@ -27,26 +27,24 @@ exports.find = find
 //     find(dbName,collectionName,json,{},callback)
 // }
 
-function find(dbName, collectionName, json, callback, limit_skip) {
-    var result = []
-    var limit, skip
-    console.log(arguments)
-    if (arguments.length != 5) {
-        limit = 0
-        skip = 0
-        // callback('arguments`s length must be 5!', null)
+function find(dbName, collectionName, json, callback, skip) {
+    if (arguments.length == 3) {
+        callback = json
     }
-
-    // console.log(typeof limit_skip == )
+    var result = []
+    console.log('arguments: ', arguments[4])
+    skip = parseInt(arguments[4].page)
+    console.log('skip: ', skip)
+    // console.log(typeof skip == )
     json = json || {}
     _connect(function (err, client) {
         if (err) {
             callback(err, null)
         }
         var db = client.db(dbName)
-        var cursor = db.collection(collectionName).find(json)
+        var cursor = db.collection(collectionName).find(json).limit(10).skip(skip)
         cursor.each(function (err, doc) {
-            if(err){
+            if (err) {
                 callback('', null)
             }
             if (doc) {
@@ -54,6 +52,45 @@ function find(dbName, collectionName, json, callback, limit_skip) {
             } else {
                 callback(null, result)
             }
+        })
+        client.close()
+    })
+}
+
+exports.delete = function (dbName, collectionName, json, callback) {
+    json = json || {}
+    _connect(function (err, client) {
+        if (err) {
+            callback(err)
+        }
+        var db = client.db(dbName)
+        db.collection(collectionName).deleteMany(json, function (err, results) {
+            // console.log('deleteMany: ', results)
+            if (err) {
+                callback(err)
+                return
+            }
+            callback(results)
+            client.close()
+        })
+    })
+}
+
+exports.update = function (dbName, collectionName, condition, modifyData, callback) {
+    condition = condition || {}
+    modifyData = modifyData || {}
+    _connect(function (err, client) {
+        if (err) {
+            callback(err)
+        }
+        var db = client.db(dbName)
+        db.collection(collectionName).updateMany(
+            condition,
+            modifyData, 
+            function (err, results) {
+            // console.log('deleteMany: ', results)
+            callback(err, results)
+            client.close()
         })
     })
 }
