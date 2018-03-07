@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>相册</title>
+    <title>留言板</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -17,48 +17,79 @@
       <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style type="text/css">
+        #alertsuccess,
+        #alerterror {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
-    <h1 style="text-align: center">留言本</h1>
-    <div class="container">
-        <form class="form-horizontal col-lg-6">
-            <div class="form-group">
-                <label for="name" class="col-sm-2 control-label">姓名</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="name" name="name" placeholder="姓名">
+    <div style="text-align: center">
+        <h1>留言本</h1>
+        <div class="container">
+            <!-- <form class="form-horizontal col-lg-12"> -->
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">姓名</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="name" name="name" placeholder="姓名">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <label for="content" class="col-sm-2 control-label">留言</label>
+                <div class="form-group">
+                    <label for="content" class="col-sm-2 control-label">留言</label>
+                    <div class="col-sm-10">
+                        <textarea class="form-control" rows="3" name="content" id="content"></textarea>
+                    </div>
+                </div>
+                <div style="text-align: center">
+                    <button id="submit" type="button" class="btn btn-default">提交</button>
+                    <button id="reset" type="reset" class="btn btn-default">重置</button>
+                </div>
+                <div id="alertsuccess" class="alert alert-success alert-dismissible" role="alert">提交成功!</div>
+                <div id="alerterror" class="alert alert-danger alert-dismissible" role="alert">提交出现错误!</div>
+            </form>
+        </div>
 
-                <div class="col-sm-10">
-                    <textarea class="form-control" rows="3" name="content" id="content"></textarea>
-                </div>
-            </div>
-            <div style="text-align: center">
-                <button id="submit" type="button" class="btn btn-default">提交</button>
-                <button type="reset" class="btn btn-default">重置</button>
-            </div>
-        </form>
     </div>
+
+    <script type="text/template" id="moban">
+        <div class="messages">
+            <p>[姓名]{{= name }}</p>
+            <p>[留言]{{= message }}</p>
+            <p>[时间]{{= date }}</p>
+            <p><a href="/delete?id={{=id}}" class="delete">删除</a></p>
+        </div>
+    </script>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="/js/jquery-1.11.2.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/underscore-min.js"></script>
     <script>
         $('#submit').click(
             function () {
+                $('#alertsuccess').hide()
+                $('#alerterror').hide()
                 $.post("/dopost", {
                     "name": $("#name").val(),
                     "content": $("#content").val()
                 }, function (result) {
-                    result.success && alert('success!!')
-                }
-                )
+                    if (result && result.success) {
+                        // alert('success!!')
+                        $('#alertsuccess').fadeIn()
+                    } else {
+                        $('#alerterror').fadeIn()
+                    }
+                })
             }
         )
+        $('#reset').click(function () {
+            $('#alertsuccess').hide()
+            $('#alerterror').hide()
+        })
     </script>
 </body>
 

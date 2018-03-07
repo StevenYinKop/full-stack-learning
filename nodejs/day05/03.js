@@ -17,9 +17,8 @@ app.get("/", function (req, res, next) {
 
 app.post("/dopost", function (req, res, next) {
     var form = new formidable.IncomingForm()
-    console.log('dopost', form)
-    form.parse(req, function (err, fields, files) {
-        console.log('parse -> files', files)
+    // console.log('dopost', form)
+    form.parse(req, function (err, fields) {
         db.insertOne("leaves", "messages",
             {
                 "name": fields.name,
