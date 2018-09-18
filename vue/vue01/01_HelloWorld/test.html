@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hello World From Vue</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="message">
+        <p>Hello, {{ message }}</p>
+    </div>
+</body>
+<script type="text/javascript" src="../../js/vue.js"></script>
+<script type="text/javascript">
+    // 创建一个Vue实例
+    const vm = new Vue({ // 配置对象 添加option
+        el: '#app', // element: 值是选择器
+        data: {
+            message: 'World!',
+        }
+    })
+</script>
+</html>

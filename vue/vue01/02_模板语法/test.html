@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>模板语法</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>1. 双大括号表达式</h2>
+        <p>{{ msg }}</p>
+        <p>{{ msg.toUpperCase() }}</p>
+        <p v-text="msg"></p>
+        <p v-html="msg"></p>
+        <h2>2. 强制数据绑定</h2>
+        <img src="imgUrl" />
+        <img v-bind:src="imgUrl" />
+        <img :src="imgUrl" />
+        <h2>3. 绑定事件监听</h2>
+        <button onclick="click1()">原始事件</button>
+        <button v-on:click="click2">vue绑定事件1</button>
+        <button @click="click3(msg)">vue绑定事件2</button>
+        <button @click="click3()">vue绑定事件3</button>
+    </div>
+    <script src="../../js/vue.js"></script>
+    <script>
+        function click1(){
+            alert('click1')
+        }
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                msg: '<a href="http://www.vue.org">TEST</a>',
+                imgUrl: 'https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/logo_white_fe6da1ec.png'
+            },
+            methods: {
+                click2: () => {
+                    alert('click2')
+                },
+                click3: (msg) => {
+                    alert(msg)
+                },
+            }
+        })
+    </script>
+</body>
+</html>

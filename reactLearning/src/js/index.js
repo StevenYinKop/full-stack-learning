@@ -1,8 +1,5 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-import ComponentHeader from './components/header.js'
-import ComponentFooter from './components/footer.js'
-import BodyIndex from './components/bodyIndex.js'
 
 class Index extends React.Component{
     componentWillMount() {
@@ -28,11 +25,36 @@ class Index extends React.Component{
         console.log('componentWillReceiveProps')
     }
     render() {
+
+        const MAPPING ={
+            'A': [{
+                'name': 'aaa',
+                'posts' : '1',
+            }],
+            'B': [{
+                'name': 'bbb',
+                'posts' : '2',
+            },{
+                'name': 'ccc',
+                'posts' : '3',
+            },
+        ]}
+        let SECTIONS = []
+        for (const key in MAPPING) {
+            if (MAPPING.hasOwnProperty(key)) {
+                SECTIONS.push({
+                    data: MAPPING[key],
+                    key: key,
+                })                
+            }
+        }
+        console.log(SECTIONS)
+
         return (
         <div>
-            <ComponentHeader/>
+            {/* <ComponentHeader/>
             <BodyIndex/>
-            <ComponentFooter/>
+            <ComponentFooter/> */}
         </div>
         )
     }
