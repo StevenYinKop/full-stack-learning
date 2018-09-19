@@ -45,13 +45,13 @@
                 // 监视
                 watch: { // 监视属性: 通过vm对象的$watch()或者watch配置来监视指定属性, 当属性变化时, 回调函数自动调用, 在函数内部进行计算
                     firstName: function(newValue, oldValue) {
-                        console.log('newValue', newValue)
+                        // console.log('newValue', newValue)
                         this.fullName2 = (newValue + " " + this.lastName).trim()
                     }
                 }
             })
             vm.$watch('lastName', function(newValue, oldValue) {
-                console.log('newValue', newValue, oldValue)
+                // console.log('newValue', newValue, oldValue)
                 this.fullName2 = (this.firstName + " " + newValue).trim()
             })
         </script>

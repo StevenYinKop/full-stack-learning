@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>06_列表渲染_过滤与排序</title>
+</head>
+
+<body>
+  <!--
+1. 列表过滤
+2. 列表排序
+-->
+  <div id="app">
+    <input type="text" v-model="searchName">
+    <ul>
+      <li v-for="(item, index) in filterList" :key="index">
+        {{index}} ---- {{item.name}} ----({{item.age}})
+      </li>
+    </ul>
+    <button @click="setOrderType(1)">年龄升序</button>
+    <button @click="setOrderType(2)">年龄降序</button>
+    <button @click="setOrderType(0)">原始排列</button>
+  </div>
+
+  <script type="text/javascript" src="../../js/vue.js"></script>
+  <script type="text/javascript">
+    const vm = new Vue({
+      el: '#app',
+      data: {
+        list: [{
+          name: 'lisi',
+          age: 24,
+        }, {
+          name: 'wangwu',
+          age: 25,
+        }, {
+          name: 'jack',
+          age: 29,
+        }, {
+          name: 'zhangsan',
+          age: 23,
+        }, {
+          name: 'yinzifan',
+          age: 23,
+        },],
+        searchName: '',
+        orderType: 0,
+      },
+      computed: {
+        filterList() {
+          const arr = this.list.filter(item => item.name.indexOf(this.searchName.trim()) != -1)
+          arr.sort((o1, o2) => {
+            if(this.orderType === 1) {
+              return o1.age - o2.age
+            } else if(this.orderType === 2) {
+              return o2.age - o1.age
+            }
+          })
+          return arr
+        }
+      },
+      methods: {
+        setOrderType(type) {
+          this.orderType = type
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
