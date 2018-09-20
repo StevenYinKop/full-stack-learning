@@ -1,28 +1,23 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <HelloWorld/>
+    <hr>
+    <h2>DEMO 01 留言板</h2>
+    <Comments/>
+    <hr>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import Comments from './components/Comments/Comments'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Comments
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
