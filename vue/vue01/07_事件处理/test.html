@@ -19,9 +19,61 @@
   .keycode : 操作的是某个keycode值的健
   .enter : 操作的是enter键
 -->
+<div id="app">
+  <button v-on:click="click1">点击事件1</button>
+  <button @click="click2">点击事件2</button>
+  <button @click="click3(msg)">点击事件3</button>
+  <button @click="click4">默认事件形参</button>
+  <button @click="click5(msg, $event)">隐含属性对象</button>
+  <br>
+  <a href="http://www.baidu.com" @click.prevent="click6">阻止事件的默认行为</a>
+  <div style="height: 200px; width: 300px; background-color: red" @click="outterClick">
+      <div style="height: 75px; width: 75px; background-color: blue" @click.stop="innerClick"></div>
+  </div>
+  按下回车键弹出输入内容<input type="text" v-model="inputContent" @keyup.13="enterClick">
+  <!-- 也可以写成@keyup.enter -->
+</div>
 
-<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript" src="../../js/vue.js"></script>
 <script type="text/javascript">
+  new Vue({
+    el: '#app',
+    data: {
+      inputContent: '',
+      msg: '点击事件3',
+    },
+    methods: {
+      click1() {
+        alert('按钮1被点击了')
+      },
+      click2() {
+        alert('按钮2被点击了')
+      },
+      click3(msg) {
+        alert(`按钮3被点击了, 参数为: ${msg}`)
+      },
+      click4(event) {
+        console.log('默认事件形参', event)
+        alert(event.target.innerText)
+      },
+      click5(msg, event) {
+        console.log('隐含属性对象',msg,  event)
+        alert(msg + "," + event.target.innerText)
+      },
+      click6(event) {
+        alert(event.target.innerText + ", 超链接没有进行跳转反而进入click事件, 相当于event.preventDefault()")
+      },
+      outterClick() {
+        alert('外层红色div被点击了')
+      },
+      innerClick() {
+        alert('内层蓝色div被点击了, 并且阻止了事件冒泡, 没有触发外层的click事件, 相当于event.stopPropagation()')
+      },
+      enterClick() {
+        alert('输入框的内容为: ' + this.inputContent)
+      }
+    },
+  })
 </script>
 </body>
 </html>
