@@ -1,5 +1,5 @@
 <template>
-<div class="container">
+  <div>
       <comments-header />
       <div class="col-md-4">
         <CommentsInput :addComments='addComments' />
@@ -13,9 +13,9 @@
 </template>
 
 <script>
-import CommentsHeader from './CommentsHeader/CommentsHeader'
-import CommentsInput from './CommentsInput/CommentsInput'
-import CommentsList from './CommentsList/CommentsList'
+import CommentsHeader from '../components/Comments/CommentsHeader/CommentsHeader'
+import CommentsInput from '../components/Comments/CommentsInput/CommentsInput'
+import CommentsList from '../components/Comments/CommentsList/CommentsList'
 export default {
   components: {
     CommentsHeader,

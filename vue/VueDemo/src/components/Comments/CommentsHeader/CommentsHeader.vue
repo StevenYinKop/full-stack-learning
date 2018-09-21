@@ -1,10 +1,6 @@
 <template>
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12">
-            <h1>请发表对Vue的评论</h1>
-            </div>
-        </div>
+    <div >
+        <h1>请发表对Vue的评论</h1>
     </div>
 </template>
 
