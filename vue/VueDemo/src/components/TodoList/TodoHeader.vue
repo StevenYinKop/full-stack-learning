@@ -1,14 +1,17 @@
 <template>
 <div>
   <el-input v-model="nameValue" placeholder="请输入待办事项"></el-input>
+  <hr>
   <el-input v-model="contentValue" placeholder="请输入事项详情"></el-input>
-  <el-button 
+  <hr>
+  <el-button
   size="mini"
   type="primary"
   @click.native="addNewTodo">
     添加
   </el-button>
-  <p v-show="errMsg">{{errMsg}}</p>
+  <hr>
+  <p style="color: red" v-show="errMsg">{{errMsg}}</p>
 </div>
 </template>
 <script>
@@ -24,9 +27,9 @@ export default {
     }
   },
   methods: {
-    addNewTodo() {
+    addNewTodo () {
       const { nameValue, contentValue } = this
-      if(!nameValue || !contentValue) {
+      if (!nameValue || !contentValue) {
         this.errMsg = '请输入正确的名称和详情信息'
       } else {
         this.errMsg = ''

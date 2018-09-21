@@ -15,12 +15,20 @@
       prop="content"
       label="任务详情">
     </el-table-column>
+    <el-table-column
+      label="操作"
+      width="120">
+      <template slot-scope="scope">
+        <i class="el-icon-check" @click="completedTodo(scope.row.id)"></i>
+      </template>
+    </el-table-column>
   </el-table>
 </template>
 <script>
 export default {
   props: {
-    todos: Array
+    todos: Array,
+    completedTodo: Function
   },
   data () {
     return {

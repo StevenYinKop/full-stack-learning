@@ -1,8 +1,8 @@
 <template>
 <div>
-  <todo-header></todo-header>
-  <todo-body :todos='todos' :addTodo='addTodo'></todo-body>
-  <todo-footer :todos='todos'></todo-footer>
+  <todo-header :addTodo='addTodo'></todo-header>
+  <todo-body :todos='todos' :completedTodo='completedTodo'></todo-body>
+  <todo-footer :todos='todos' :deleteCompletedTodos='deleteCompletedTodos'></todo-footer>
 </div>
 </template>
 <script>
@@ -15,33 +15,34 @@ export default {
   },
   data () {
     return {
-      todos: [{
-        id: 1,
-        content: 'football ',
-        name: 'football',
-        completed: true
-      }, {
-        id: 2,
-        content: 'learning vue',
-        name: 'vue',
-        completed: false
-      }, {
-        id: 3,
-        content: 'learning java',
-        name: 'java',
-        completed: false
-      }],
-      addTodo(item) {
+      todos: [],
+      addTodo: (item) => {
         let maxId = 0
         this.todos.forEach(e => {
-          if(e.id > maxId) {
+          if (e.id > maxId) {
             maxId = e.id
           }
         })
         item.id = maxId + 1
+        this.todos.push(item)
+        window.localStorage.setItem('todo-key', JSON.stringify(this.todos))
+      },
+      deleteCompletedTodos: () => {
+        this.todos = this.todos.filter(item => !item.completed)
+      },
+      completedTodo: (id) => {
+        this.todos = this.todos.map(item => {
+          if(item.id === id) {
+            item.completed = true
+          }
+          return item
+        })
       }
     }
   },
+  mounted () {
+    this.todos = JSON.parse(window.localStorage.getItem('todo-key') || '[]')
+  }
 }
 </script>
 <style>

@@ -2,7 +2,7 @@
   <el-button
   size="mini"
   type="danger"
-  @click.native="deleteAllCompletedTodos"
+  @click.native="deleteCompletedTodos"
   >
   清除已完成任务
   </el-button>
@@ -10,13 +10,8 @@
 <script>
 export default {
   props: {
-    todos: Array
-  },
-  methods: {
-    deleteAllCompletedTodos () {
-
-    }
+    todos: Array,
+    deleteCompletedTodos: Function
   }
-
 }
 </script>
