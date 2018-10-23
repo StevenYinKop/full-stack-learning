@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .static{
+      position: static;
+      background: red;
+      width: 100px;
+      height: 100px;
+    }
+    .absolute{
+      position: absolute;
+      background: black;
+      width: 100px;
+      height: 100px;
+      left: 100px;
+    }
+    .absolute2{
+      position: absolute;
+      background: yellow;
+      width: 50px;
+      height: 10px;
+      left: 10px;
+    }
+    .relative{
+      position: relative;
+      background: green;
+      width: 100px;
+      height: 100px;
+    }
+    .fixed{
+      position: fixed;
+      background: blue;
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+  <div class="static"></div>
+  <div class="absolute"></div>
+  <div class="relative"">
+    <div class="absolute2"></div>
+  </div>
+  <div class="fixed"></div>
+  <div></div>
+</body>
+</html>
