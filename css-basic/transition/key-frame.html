@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  .container img{
+    /* background-size: cover; */
+    /* background: url(./images.png); */
+    /* background-position: center center;
+    background-repeat: no-repeat; */
+    width: 100px;
+    height: 100px;
+    animation: loading 0.2s;
+    animation-iteration-count: infinite;
+  }
+  @keyframes loading {
+    25% {
+      transform: rotate(90deg);
+    }
+    50% {
+      transform: rotate(180deg);
+    }
+    75% {
+      transform: rotate(270deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  </style>
+  <script>
+    var arr = [
+      './png/alibi.png',
+      './png/ash.png',
+      './png/bandit.png',
+      './png/blackbeard.png',
+      './png/blitz.png',
+      './png/buck.png',
+      './png/capitao.png',
+      './png/castle.png',
+      './png/caveira.png',
+      './png/clash.png',
+      './png/doc.png',
+      './png/dokkaebi.png',
+      './png/echo.png',
+      './png/ela.png',
+      './png/finka.png',
+      './png/frost.png',
+      './png/fuze.png',
+      './png/glaz.png',
+      './png/hibana.png',
+      './png/iq.png',
+      './png/jackal.png',
+      './png/jäger.png',
+      './png/kapkan.png',
+      './png/lesion.png',
+      './png/lion.png',
+      './png/maestro.png',
+      './png/maverick.png',
+      './png/mira.png',
+      './png/montagne.png',
+      './png/mute.png',
+      './png/pulse.png',
+      './png/recruit-blue.png',
+      './png/recruit-green.png',
+      './png/recruit-orange.png',
+      './png/recruit-red.png',
+      './png/recruit-yellow.png',
+      './png/rook.png',
+      './png/sledge.png',
+      './png/smoke.png',
+      './png/tachanka.png',
+      './png/thatcher.png',
+      './png/thermite.png',
+      './png/twitch.png',
+      './png/valkyrie.png',
+      './png/vigil.png',
+      './png/ying.png',
+      './png/zofia.png',
+    ];
+    window.onload = function () {
+      var container = document.getElementById("container");
+      var timeInput = document.getElementById("time");
+      var btn = document.getElementById("btn");
+      btn.addEventListener("click", function () {
+        
+      });
+      arr.forEach(function(item, index, array) {
+        var img = document.createElement("img");
+        img.setAttribute("src", item);
+        container.appendChild(img);
+      });
+    }
+  </script>
+</head>
+  
+<body>
+  <div class="header">
+    <input type="text" placeholder="输入一个时间" id="time">
+    <div id="btn">确认按钮</div>
+  </div>
+  <div id="container" class="container">
+    <!-- <img src="./images.png" alt=""> -->
+  </div>
+</body>
+</html>
