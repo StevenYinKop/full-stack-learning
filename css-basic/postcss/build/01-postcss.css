@@ -1,0 +1,9 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.box {
+  box-shadow: 0 0 3px rgba(255, 255, 255 ,.3);
+}
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLzAxLXBvc3Rjc3MuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0UsV0FBVztFQUNYLFVBQVU7Q0FDWDs7QUFFRDtFQUNFLDRDQUE0QztDQUM3QyIsImZpbGUiOiIwMS1wb3N0Y3NzLmNzcyIsInNvdXJjZXNDb250ZW50IjpbIioge1xuICBwYWRkaW5nOiAwO1xuICBtYXJnaW46IDA7XG59XG5cbi5ib3gge1xuICBib3gtc2hhZG93OiAwIDAgM3B4IHJnYmEoMjU1LCAyNTUsIDI1NSAsLjMpO1xufSJdfQ== */

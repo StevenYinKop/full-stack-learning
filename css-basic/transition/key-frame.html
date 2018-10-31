@@ -30,9 +30,17 @@
       transform: rotate(360deg);
     }
   }
+  @keyframes loading2 {
+    50% {
+      transform: translateY(100px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
   </style>
   <script>
-    var arr = [
+    var IconArr = [
       './png/alibi.png',
       './png/ash.png',
       './png/bandit.png',
@@ -81,6 +89,9 @@
       './png/ying.png',
       './png/zofia.png',
     ];
+    operatorArr = [
+    './operators/thermite.png',
+    ];
     window.onload = function () {
       var container = document.getElementById("container");
       var timeInput = document.getElementById("time");
@@ -88,10 +99,20 @@
       btn.addEventListener("click", function () {
         
       });
-      arr.forEach(function(item, index, array) {
+      IconArr.forEach(function(item, index, array) {
         var img = document.createElement("img");
         img.setAttribute("src", item);
-        container.appendChild(img);
+        var child = container.appendChild(img);
+      });
+      container.appendChild(document.createElement("br"));
+      operatorArr.forEach(function(item, index, array) {
+        var img = document.createElement("img");
+        img.setAttribute("src", item);
+        img.style.animation = "loading2 2s";
+        img.style.animationIterationCount = "infinite";
+        img.width = "100%";
+        img.height = "100%";
+        var child = container.appendChild(img);
       });
     }
   </script>
