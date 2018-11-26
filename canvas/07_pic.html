@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="demo">
+
+  </canvas>
+
+  <script>
+      (function() {
+        // 1. 拿到画布
+        var canvas = document.getElementById('demo');
+        // 2. 拿到当前上下文
+        var ctx = canvas.getContext('2d');
+        // 3. 绘制
+        canvas.width = 600;
+        canvas.height = 600;
+        canvas.style.border = '1px solid #000';
+      }());
+  </script>
+</body>
+</html>

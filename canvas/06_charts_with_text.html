@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="demo">
+
+  </canvas>
+
+  <script>
+      var data = [{
+        value: .1,
+        name: 'XXX1',
+      }, {
+        value: .3,
+        name: 'XXX2',
+      }, {
+        value: .3,
+        name: 'XXX3',
+      }, {
+        value: .2,
+        name: 'XXX4',
+      }, {
+        value: .1,
+        name: 'XXX5',
+      }];
+      var circleCentral = { x: 200, y: 200 };
+      var radius = 100;
+      var spacing = 20;
+      (function() {
+        // 1. 拿到画布
+        var canvas = document.getElementById('demo');
+        // 2. 拿到当前上下文
+        var ctx = canvas.getContext('2d');
+        // 3. 绘制
+        canvas.width = 600;
+        canvas.height = 600;
+        canvas.style.border = '1px solid #000';
+        // 弧度和角度的转换公式: 30 * Math.PI / 180
+        var startAngle = 0;
+        var endAngle = 0;
+        data.forEach(function(item, index) {
+          debugger;
+          ctx.beginPath();
+          // item.value
+          ctx.moveTo(circleCentral.x, circleCentral.y);
+          endAngle = startAngle + 360 * data[index].value;
+          ctx.arc(circleCentral.x,
+            circleCentral.y,
+            radius,
+            startAngle * Math.PI / 180, // (90 * Math.PI /180),
+            endAngle * Math.PI / 180, // (130 * Math.PI /180),
+            false
+          );
+          var color = '#' + Math.random().toString(16).substr(2, 6);
+          var textAngle = (startAngle + endAngle) / 2;
+          var textX = circleCentral.x + (radius + spacing) * Math.cos(textAngle * Math.PI / 180);
+          var textY = circleCentral.y + (radius + spacing) * Math.sin(textAngle * Math.PI / 180);
+          ctx.textAlign = textAngle > 90 && textAngle < 270 ? 'end' : 'start';
+          ctx.fillStyle= color;
+          ctx.strokeStyle = color;
+          ctx.fillText(item.name, textX, textY);
+          ctx.fill();
+          ctx.stroke();
+          startAngle = endAngle;
+        });
+      }());
+  </script>
+</body>
+</html>
