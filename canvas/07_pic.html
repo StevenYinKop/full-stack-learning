@@ -1,27 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 </head>
+
 <body>
   <canvas id="demo">
 
   </canvas>
 
   <script>
-      (function() {
-        // 1. 拿到画布
-        var canvas = document.getElementById('demo');
-        // 2. 拿到当前上下文
-        var ctx = canvas.getContext('2d');
-        // 3. 绘制
-        canvas.width = 600;
-        canvas.height = 600;
-        canvas.style.border = '1px solid #000';
-      }());
+    var down = 40;
+    var up = 38;
+    var left = 37;
+    var right = 39;
+    var picIndex = {
+      [down]: 0,
+      [left]: 1,
+      [right]: 2,
+      [up]: 3,
+    };
+    var originMethod = {
+      [down]: 8,
+      [left]: -8,
+      [right]: 8,
+      [up]: -8,
+    };
+    (function (window) {
+      var origin = { x: 100, y: 100 };
+      var currentState = { direction: down, num: 0 };
+      // 1. 拿到画布
+      var canvas = document.getElementById('demo');
+      // 2. 拿到当前上下文
+      var ctx = canvas.getContext('2d');
+      // 3. 绘制
+      canvas.width = 600;
+      canvas.height = 600;
+      canvas.style.border = '1px solid #000';
+      var img = new Image();
+      img.src = './soldier.png';
+      img.onload = function () {
+        var drawImg = function (ctx, img, currentState, newDirection, origin) {
+          // ctx.clearRect(0, 0, canvas.width, canvas.height);
+          var x = img.width * currentState.num / 4;
+          var y = img.height / 4 * picIndex[currentState.direction];
+          ctx.drawImage(img, x, y, img.width / 4, img.height / 4, origin.x, origin.y, img.width / 2, img.height / 2);
+        }
+        drawImg(ctx, img, currentState, down, origin);
+        window.onkeydown = function (e) {
+          // ↓ ← → ↑
+          if (e.keyCode !== down && e.keyCode !== up && e.keyCode !== right && e.keyCode !== left) {
+            return;
+          }
+          if (currentState.direction === e.keyCode) {
+            currentState.num++;
+            currentState.num %= 4;
+          } else {
+            currentState = { direction: e.keyCode, num: 0 };
+          }
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          origin = e.keyCode === down || e.keyCode === up ? { x: origin.x, y: origin.y + originMethod[e.keyCode] } : { x: origin.x + originMethod[e.keyCode], y: origin.y };
+          drawImg(ctx, img, currentState, e.keyCode, origin);
+        }
+      };
+      //   img.onload = function () {
+      //     var n = 0;
+      //     setInterval(function () {
+      //       ctx.drawImage(img, img.width * ((n % 4) / 4), img.height / 4, img.width / 4, img.height / 4, 100, 100, img.width / 4, img.height / 4);
+      //       n++;
+      //     }, 200);
+      //   };
+    }(window));
   </script>
 </body>
+
 </html>
