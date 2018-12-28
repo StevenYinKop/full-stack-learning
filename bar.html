@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .root {
+            width: 1110px;
+        }
+        .footer-chip-container {
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            box-shadow: 6px 6px 10px 4px rgba(216, 214, 214, 0.5);
+            line-height: 80px;
+        }
+
+        .footer-chip-label {
+            width: 560px;
+            font-size: 22px;
+            font-family: PingFangSC-Semibold;
+            font-weight: 600;
+            color: rgba(51, 51, 51, 1);
+            line-height: 30px;
+            margin: auto 0;
+            margin-left: 20px;
+            letter-spacing: 1px;
+        }
+
+        .footer-chip-odd-type {}
+
+        .footer-chip-odd-team {}
+
+        .footer-chip-input {
+            padding-left: 11px;
+            margin: auto 0;
+            margin-left: 22px;
+            width: 349px;
+            height: 48px;
+            background: rgba(255, 255, 255, 1);
+            border-radius: 4px;
+            border: 1px solid rgba(198, 198, 198, 1);
+        }
+
+        .footer-chip-input::-webkit-input-placeholder {
+            /* WebKit, Blink, Edge */
+            height: 22px;
+            font-size: 16px;
+            font-family: PingFangSC-Light;
+            font-weight: 300;
+            color: rgba(153, 153, 153, 1);
+            line-height: 22px;
+            letter-spacing: 1px;
+        }
+
+        .footer-chip-confirm {
+            margin: auto 0;
+            margin-left: 30px;
+            width: 101px;
+            height: 46px;
+            line-height: 46px;
+            text-align: center;
+            /* background: rgba(155, 155, 155, 1); */
+            background: rgba(34, 30, 30, 1);
+            cursor: pointer;
+            box-shadow: 0px 2px 4px 0px rgba(31, 29, 28, 0.6);
+            border-radius: 4px;
+            font-size: 22px;
+            font-family: PingFangSC-Semibold;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 1);
+            letter-spacing: 1px;
+        }
+
+        .footer-chip-confirm-disabled {
+            cursor: not-allowed;
+            background: rgba(155, 155, 155, 1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="root">
+        <div class="footer-chip-container">
+            <div class="footer-chip-label">您在<span class="footer-chip-odd-type">猜输赢</span>中选择了<span class="footer-chip-odd-team">PSG.LGD</span>，您的下注数额为：
+            </div>
+            <input class='footer-chip-input' placeholder='您的金币可用余额为：321,000' />
+            <div class="footer-chip-confirm ">确定</div>
+        </div>
+    </div>
+</body>
+
+</html>
