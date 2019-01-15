@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="root"></canvas>
+</body>
+
+<script>
+
+    var canvas = document.getElementById("root");
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+    var context = canvas.getContext("2d");
+    var radius = 100;
+    var max = 97;
+    var min = 0;
+    // x, y 表示二维坐标； value表示强弱值
+    var data = [
+        { x: 471, y: 277, value: 25 },
+        { x: 438, y: 375, value: 97 },
+        { x: 373, y: 19, value: 71 },
+        { x: 473, y: 42, value: 63 },
+        { x: 463, y: 95, value: 97 },
+        { x: 590, y: 437, value: 34 },
+        { x: 377, y: 442, value: 66 },
+        { x: 171, y: 254, value: 20 },
+        { x: 6, y: 582, value: 64 },
+        { x: 387, y: 477, value: 14 },
+        { x: 300, y: 300, value: 80 }
+    ];
+
+    const defaultColorStops = {
+        0: "#f00",
+        0.2: "#0f0",
+        0.4: "#ff0",
+        1: "#f00",
+    };
+
+    // 1. 以指定的尺寸（以像素计）创建新的 ImageData 对象：
+    // var imgData=context.createImageData(width, height);
+    // 2. 创建与指定的另一个 ImageData 对象尺寸相同的新 ImageData 对象（不会复制图像数据）：
+    // var imgData=context.createImageData(imageData);
+
+    function Palette(opts) {
+        Object.assign(this, opts);
+        this.init();
+    }
+
+    Palette.prototype.init = function () {
+        let colorStops = this.colorStops || defaultColorStops;
+
+        // 创建canvas
+        let canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        let ctx = canvas.getContext("2d");
+
+        // 创建线性渐变色
+        let linearGradient = ctx.createLinearGradient(0, 0, 0, height);
+        for (const key in colorStops) {
+            linearGradient.addColorStop(key, colorStops[key]);
+        }
+
+        // 绘制渐变色条
+        ctx.fillStyle = linearGradient;
+        ctx.fillRect(0, 0, width, height);
+        // 读取像素数据
+        this.imageData = ctx.getImageData(0, 0, 1, height).data;
+        this.canvas = canvas;
+    };
+
+    /**
+     * 取色器
+     * @param {Number} position 像素位置
+     * @return {Array.<Number>} [r, g, b]
+     */
+    Palette.prototype.colorPicker = function (position) {
+        return this.imageData.slice(position * 4, position * 4 + 3);
+    };    
+
+    function Radiation(opts) {
+        Object.assign(this, opts);
+        this.init();
+    }
+
+    Radiation.prototype.init = function () {
+        let { radius, globalAlpha } = this;
+
+        // 创建canvas
+        let canvas = document.createElement("canvas");
+        canvas.width = canvas.height = radius * 2;
+
+        // 获取上下文，初始化设置
+        let ctx = canvas.getContext("2d");
+        ctx.translate(radius, radius);
+        ctx.globalAlpha = Math.max(Math.min(globalAlpha, 1), 0);
+        // 创建径向渐变色：灰度由强到弱
+        let radialGradient = ctx.createRadialGradient(0, 0, 0, 0, 0, radius);
+        radialGradient.addColorStop(0.0, "rgba(0,0,0,1)");
+        radialGradient.addColorStop(1.0, "rgba(0,0,0,0)");
+        ctx.fillStyle = radialGradient;
+        // 画圆
+        ctx.arc(0, 0, radius, 0, Math.PI * 2);
+        ctx.fill();
+        this.canvas = canvas;
+    };
+
+    Radiation.prototype.draw = function (context) {
+        let { canvas, x, y, radius } = this;
+        context.drawImage(canvas, x - radius, y - radius);
+    };
+    
+    data.forEach(({x, y, value}) => {
+        new Radiation({ x, y, radius, globalAlpha: (value - min) / (max - min) }).draw(context);
+    });
+    // 像素着色
+    let imageData = context.getImageData(0, 0, width, height);
+    let linearData = imageData.data;
+    let palette = new Palette({
+        0: '#f00',
+        1: '#0f0'
+    });
+    for (var i = 3; i < linearData.length; i += 4) {
+        let alpha = linearData[i];
+        let color = palette.colorPicker(alpha);
+        linearData[i - 3] = color[0];
+        linearData[i - 2] = color[1];
+        linearData[i - 1] = color[2];
+    }
+    context.putImageData(imageData, 0, 0);
+
+</script>
+
+</html>
