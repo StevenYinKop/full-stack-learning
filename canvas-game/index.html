@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style media="screen">
+    body {
+      background: black;
+      text-align: center;
+    }
+    #c1 {
+      background: url('./img/game_bg_2_hd.jpg') cover no-repeat;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+  <script src="jquery.js"></script>
+  <script>
+    function loadResource(path) {
+      new Promise((resolve, reject) => {
+        $.ajax({
+          url: path,
+          dataType: 'json',
+          success(json){
+            console.log(json);
+          },
+          error(err) {
+            console.log(err);
+            reject(err);
+          },
+        });
+      });
+    }
+    window.onload() = async function() {
+      let fishes = await loadResource('fish.json')
+    }
+  </script>
+</head>
+<body>
+  <canvas id="c1"></canvas>
+</body>
+</html>
