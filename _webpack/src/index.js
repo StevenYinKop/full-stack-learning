@@ -1,4 +1,6 @@
-var obj = require('./a.js');
-var str = obj.str;
+var obj = require('./a.js')
+require('./a.css')
+require('./a.scss')
+var str = obj.str
 
-console.log(str);
+console.log(str)

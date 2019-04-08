@@ -1,0 +1,14 @@
+body {
+  background: red;
+}
+.scss-test {
+  width: 300px;
+  height: 300px;
+  background: black;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg); }
+  .scss-test span {
+    color: pink; }
+  .scss-test:hover {
+    background: red; }
+
