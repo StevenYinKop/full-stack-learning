@@ -7,7 +7,7 @@ module.exports = {
     contentBase: './build',
     progress: true
   },
-  mode: 'production',
+  mode: 'development',
   entry: './src/index.js',
   output: {
     filename: 'bundle.js',
@@ -29,6 +29,19 @@ module.exports = {
   ],
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        use: {
+          loader: 'babel-loader', // 这个loader用于把ES6+的新语法转化为ES5
+          options: {
+            presets: ['@babel/preset-env'],
+            plugins: [
+              ['@babel/plugin-proposal-decorators', { legacy: true }],
+              ['@babel/plugin-proposal-class-properties', { loose: true }]
+            ]
+          }
+        }
+      },
       {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
