@@ -32,15 +32,24 @@ module.exports = {
       {
         test: /\.js$/,
         use: {
+          loader: 'eslint-loader'
+        }
+      },
+      {
+        test: /\.js$/,
+        use: {
           loader: 'babel-loader', // 这个loader用于把ES6+的新语法转化为ES5
           options: {
             presets: ['@babel/preset-env'],
             plugins: [
               ['@babel/plugin-proposal-decorators', { legacy: true }],
-              ['@babel/plugin-proposal-class-properties', { loose: true }]
+              ['@babel/plugin-proposal-class-properties', { loose: true }],
+              ['@babel/plugin-transform-runtime']
             ]
           }
-        }
+        },
+        include: path.resolve(__dirname, 'src'),
+        exclude: /node_modules/
       },
       {
         test: /\.css$/,
