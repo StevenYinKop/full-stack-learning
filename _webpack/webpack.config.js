@@ -1,6 +1,7 @@
 var path = require('path')
 var HtmlwebpackPlugin = require('html-webpack-plugin')
 var MiniCssExtractPlugin = require('mini-css-extract-plugin')
+let webpack = require('webpack')
 module.exports = {
   devServer: {
     port: 3000,
@@ -11,7 +12,7 @@ module.exports = {
   entry: './src/index.js',
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'build')
+    path: path.resolve(__dirname, 'build'),
   },
   plugins: [
     new HtmlwebpackPlugin({
@@ -25,10 +26,32 @@ module.exports = {
     }),
     new MiniCssExtractPlugin({
       filename: 'main.css'
+    }),
+    new webpack.ProvidePlugin({
+      $: 'jquery'
     })
   ],
   module: {
     rules: [
+      {
+        test: /\.html$/,
+        use: 'html-withimg-loader'
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: { 
+          loader: 'url-loader',
+          options: {
+            limit: 30 * 1024, // 限制当图片小于30KB时, 将图片转换为base64而不去打包.
+            outputPath: '/img/',
+            publicPath: 'http://localhost:8080/static',
+          }
+        }
+      },
+      {
+        test: require.resolve('jquery'),
+        use: 'expose-loader?$'
+      },
       {
         test: /\.js$/,
         use: {
